@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="com.obiscr.chatgpt.settings.EasyCodeState">
+    <option name="projectFiles" value="$PROJECT_DIR$/src/model/Admin.java;C:/Users/walid/OneDrive/Desktop/projetjavapharmacie/src/model/Pharmacien.java;C:/Users/walid/OneDrive/Desktop/projetjavapharmacie/src/model/Produit.java;C:/Users/walid/OneDrive/Desktop/projetjavapharmacie/src/model/Stock.java;C:/Users/walid/OneDrive/Desktop/projetjavapharmacie/src/model/Utilisateur.java;C:/Users/walid/OneDrive/Desktop/projetjavapharmacie/src/model/Vente.java;C:/Users/walid/OneDrive/Desktop/projetjavapharmacie/src/service/ProduitService.java;C:/Users/walid/OneDrive/Desktop/projetjavapharmacie/src/service/VenteService.java;C:/Users/walid/OneDrive/Desktop/projetjavapharmacie/src/utils/CSVUtils.java;C:/Users/walid/OneDrive/Desktop/projetjavapharmacie/src/utils/FilePaths.java;C:/Users/walid/OneDrive/Desktop/projetjavapharmacie/src/utils/ThreadManager.java;C:/Users/walid/OneDrive/Desktop/projetjavapharmacie/src/App.java" />
+  </component>
+</project>

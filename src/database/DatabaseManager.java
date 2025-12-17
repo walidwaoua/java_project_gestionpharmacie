@@ -6,18 +6,18 @@ public class DatabaseManager {
     private static final String DB_URL = "jdbc:sqlite:pharmacie.db";
     private static Connection connection = null;
 
-    // Créer et configurer la base de données
+    // Creer et configurer la base de donnees
     public static void initialiserBDD() {
         try {
             connection = DriverManager.getConnection(DB_URL);
-            System.out.println("✓ Connexion à la base de données établie");
+            System.out.println("Connexion a la base de donnees etablie");
             creerTables();
         } catch (SQLException e) {
-            System.err.println("❌ Erreur connexion BDD: " + e.getMessage());
+            System.err.println("Erreur connexion BDD: " + e.getMessage());
         }
     }
 
-    // Créer les tables
+    // Creer les tables
     private static void creerTables() {
         String[] tables = {
                 // Table Produits
@@ -57,9 +57,9 @@ public class DatabaseManager {
             for (String sql : tables) {
                 stmt.execute(sql);
             }
-            System.out.println("✓ Tables créées avec succès");
+            System.out.println("Tables creees avec succes");
         } catch (SQLException e) {
-            System.err.println("❌ Erreur création tables: " + e.getMessage());
+            System.err.println("Erreur creation tables: " + e.getMessage());
         }
     }
 
@@ -70,7 +70,7 @@ public class DatabaseManager {
                 connection = DriverManager.getConnection(DB_URL);
             }
         } catch (SQLException e) {
-            System.err.println("❌ Erreur récupération connexion: " + e.getMessage());
+            System.err.println("Erreur recuperation connexion: " + e.getMessage());
         }
         return connection;
     }
@@ -80,10 +80,10 @@ public class DatabaseManager {
         try {
             if (connection != null && !connection.isClosed()) {
                 connection.close();
-                System.out.println("✓ Connexion à la base de données fermée");
+                System.out.println("Connexion a la base de donnees fermee");
             }
         } catch (SQLException e) {
-            System.err.println("❌ Erreur fermeture connexion: " + e.getMessage());
+            System.err.println("Erreur fermeture connexion: " + e.getMessage());
         }
     }
 

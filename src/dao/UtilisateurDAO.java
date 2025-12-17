@@ -22,11 +22,11 @@ public class UtilisateurDAO {
             pstmt.setString(3, u.getRole());
 
             int rowsAffected = pstmt.executeUpdate();
-            System.out.println("✓ Utilisateur ajouté: " + u.getNom());
+            System.out.println("Utilisateur ajoute: " + u.getNom());
             return rowsAffected > 0;
 
         } catch (SQLException e) {
-            System.err.println("❌ Erreur ajout utilisateur: " + e.getMessage());
+            System.err.println("Erreur ajout utilisateur: " + e.getMessage());
             return false;
         }
     }
@@ -54,7 +54,7 @@ public class UtilisateurDAO {
                 }
             }
         } catch (SQLException e) {
-            System.err.println("❌ Erreur lecture utilisateur: " + e.getMessage());
+            System.err.println("Erreur lecture utilisateur: " + e.getMessage());
         }
         return null;
     }
@@ -82,12 +82,12 @@ public class UtilisateurDAO {
                 }
             }
         } catch (SQLException e) {
-            System.err.println("❌ Erreur lecture utilisateurs: " + e.getMessage());
+            System.err.println("Erreur lecture utilisateurs: " + e.getMessage());
         }
         return utilisateurs;
     }
 
-    // UPDATE - Mettre à jour un utilisateur
+    // UPDATE - Mettre a jour un utilisateur
     public synchronized boolean mettreAJour(Utilisateur u) {
         String sql = "UPDATE utilisateurs SET nom = ?, role = ? WHERE id = ?";
 
@@ -99,11 +99,11 @@ public class UtilisateurDAO {
             pstmt.setString(3, u.getId());
 
             int rowsAffected = pstmt.executeUpdate();
-            System.out.println("✓ Utilisateur mis à jour: " + u.getNom());
+            System.out.println("Utilisateur mis a jour: " + u.getNom());
             return rowsAffected > 0;
 
         } catch (SQLException e) {
-            System.err.println("❌ Erreur mise à jour utilisateur: " + e.getMessage());
+            System.err.println("Erreur mise a jour utilisateur: " + e.getMessage());
             return false;
         }
     }
@@ -117,11 +117,11 @@ public class UtilisateurDAO {
 
             pstmt.setString(1, id);
             int rowsAffected = pstmt.executeUpdate();
-            System.out.println("✓ Utilisateur supprimé: " + id);
+            System.out.println("Utilisateur supprime: " + id);
             return rowsAffected > 0;
 
         } catch (SQLException e) {
-            System.err.println("❌ Erreur suppression utilisateur: " + e.getMessage());
+            System.err.println("Erreur suppression utilisateur: " + e.getMessage());
             return false;
         }
     }
@@ -151,12 +151,12 @@ public class UtilisateurDAO {
                 }
             }
         } catch (SQLException e) {
-            System.err.println("❌ Erreur recherche utilisateur: " + e.getMessage());
+            System.err.println("Erreur recherche utilisateur: " + e.getMessage());
         }
         return utilisateurs;
     }
 
-    // Obtenir par rôle
+    // Obtenir par role
     public List<Utilisateur> obtenirParRole(String role) {
         List<Utilisateur> utilisateurs = new ArrayList<>();
         String sql = "SELECT * FROM utilisateurs WHERE role = ?";
@@ -180,8 +180,9 @@ public class UtilisateurDAO {
                 }
             }
         } catch (SQLException e) {
-            System.err.println("❌ Erreur recherche par rôle: " + e.getMessage());
+            System.err.println("Erreur recherche par role: " + e.getMessage());
         }
         return utilisateurs;
     }
 }
+

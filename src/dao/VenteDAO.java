@@ -23,11 +23,11 @@ public class VenteDAO {
             pstmt.setString(5, v.getDate().toString());
 
             int rowsAffected = pstmt.executeUpdate();
-            System.out.println("✓ Vente enregistrée: " + v.getId());
+            System.out.println("Vente enregistree: " + v.getId());
             return rowsAffected > 0;
 
         } catch (SQLException e) {
-            System.err.println("❌ Erreur enregistrement vente: " + e.getMessage());
+            System.err.println("Erreur enregistrement vente: " + e.getMessage());
             return false;
         }
     }
@@ -52,7 +52,7 @@ public class VenteDAO {
                 );
             }
         } catch (SQLException e) {
-            System.err.println("❌ Erreur lecture vente: " + e.getMessage());
+            System.err.println("Erreur lecture vente: " + e.getMessage());
         }
         return null;
     }
@@ -76,7 +76,7 @@ public class VenteDAO {
                 ));
             }
         } catch (SQLException e) {
-            System.err.println("❌ Erreur lecture ventes: " + e.getMessage());
+            System.err.println("Erreur lecture ventes: " + e.getMessage());
         }
         return ventes;
     }
@@ -102,7 +102,7 @@ public class VenteDAO {
                 ));
             }
         } catch (SQLException e) {
-            System.err.println("❌ Erreur lecture ventes par produit: " + e.getMessage());
+            System.err.println("Erreur lecture ventes par produit: " + e.getMessage());
         }
         return ventes;
     }
@@ -116,11 +116,11 @@ public class VenteDAO {
 
             pstmt.setString(1, id);
             int rowsAffected = pstmt.executeUpdate();
-            System.out.println("✓ Vente supprimée: " + id);
+            System.out.println("Vente supprimee: " + id);
             return rowsAffected > 0;
 
         } catch (SQLException e) {
-            System.err.println("❌ Erreur suppression vente: " + e.getMessage());
+            System.err.println("Erreur suppression vente: " + e.getMessage());
             return false;
         }
     }
@@ -137,7 +137,7 @@ public class VenteDAO {
                 return rs.getDouble("total");
             }
         } catch (SQLException e) {
-            System.err.println("❌ Erreur calcul total: " + e.getMessage());
+            System.err.println("Erreur calcul total: " + e.getMessage());
         }
         return 0.0;
     }

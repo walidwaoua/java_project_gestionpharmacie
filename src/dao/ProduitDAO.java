@@ -22,11 +22,11 @@ public class ProduitDAO {
             pstmt.setDouble(5, p.getPrix());
 
             int rowsAffected = pstmt.executeUpdate();
-            System.out.println("✓ Produit ajouté: " + p.getNom());
+            System.out.println("Produit ajoute: " + p.getNom());
             return rowsAffected > 0;
 
         } catch (SQLException e) {
-            System.err.println("❌ Erreur ajout produit: " + e.getMessage());
+            System.err.println("Erreur ajout produit: " + e.getMessage());
             return false;
         }
     }
@@ -51,7 +51,7 @@ public class ProduitDAO {
                 );
             }
         } catch (SQLException e) {
-            System.err.println("❌ Erreur lecture produit: " + e.getMessage());
+            System.err.println("Erreur lecture produit: " + e.getMessage());
         }
         return null;
     }
@@ -75,12 +75,12 @@ public class ProduitDAO {
                 ));
             }
         } catch (SQLException e) {
-            System.err.println("❌ Erreur lecture produits: " + e.getMessage());
+            System.err.println("Erreur lecture produits: " + e.getMessage());
         }
         return produits;
     }
 
-    // UPDATE - Mettre à jour un produit
+    // UPDATE - Mettre a jour un produit
     public synchronized boolean mettreAJour(Produit p) {
         String sql = "UPDATE produits SET nom = ?, categorie = ?, quantite = ?, prix = ? WHERE id = ?";
 
@@ -94,11 +94,11 @@ public class ProduitDAO {
             pstmt.setString(5, p.getId());
 
             int rowsAffected = pstmt.executeUpdate();
-            System.out.println("✓ Produit mis à jour: " + p.getNom());
+            System.out.println("Produit mis a jour: " + p.getNom());
             return rowsAffected > 0;
 
         } catch (SQLException e) {
-            System.err.println("❌ Erreur mise à jour produit: " + e.getMessage());
+            System.err.println("Erreur mise a jour produit: " + e.getMessage());
             return false;
         }
     }
@@ -112,11 +112,11 @@ public class ProduitDAO {
 
             pstmt.setString(1, id);
             int rowsAffected = pstmt.executeUpdate();
-            System.out.println("✓ Produit supprimé: " + id);
+            System.out.println("Produit supprime: " + id);
             return rowsAffected > 0;
 
         } catch (SQLException e) {
-            System.err.println("❌ Erreur suppression produit: " + e.getMessage());
+            System.err.println("Erreur suppression produit: " + e.getMessage());
             return false;
         }
     }
@@ -142,7 +142,7 @@ public class ProduitDAO {
                 ));
             }
         } catch (SQLException e) {
-            System.err.println("❌ Erreur recherche produit: " + e.getMessage());
+            System.err.println("Erreur recherche produit: " + e.getMessage());
         }
         return produits;
     }
@@ -168,7 +168,7 @@ public class ProduitDAO {
                 ));
             }
         } catch (SQLException e) {
-            System.err.println("❌ Erreur recherche rupture: " + e.getMessage());
+            System.err.println("Erreur recherche rupture: " + e.getMessage());
         }
         return produits;
     }

@@ -7,6 +7,10 @@ public class TestDatabase {
     public static void main(String[] args) {
         afficherBanniere();
 
+        // Nettoyer les données pour éviter les collisions PK lors des reruns
+        DatabaseManager.initialiserBDD();
+        DatabaseManager.purgerDonneesTest();
+
         // 1. Initialiser la base de données
         System.out.println("\n" + "=".repeat(80));
         System.out.println("1)  INITIALISATION DE LA BASE DE DONNÉES");
@@ -57,14 +61,15 @@ public class TestDatabase {
 
         // CREATE
         System.out.println("\nTest CREATE:");
-        Produit p1 = new Produit("TEST1", "Paracetamol Test", "Générique", 50, 2.5);
-        Produit p2 = new Produit("TEST2", "Aspirine Test", "Générique", 30, 1.8);
+        String suffix = String.valueOf(System.currentTimeMillis());
+        Produit p1 = new Produit("TEST1_" + suffix, "Paracetamol Test", "Générique", 50, 2.5);
+        Produit p2 = new Produit("TEST2_" + suffix, "Aspirine Test", "Générique", 30, 1.8);
         dao.ajouter(p1);
         dao.ajouter(p2);
 
         // READ
         System.out.println("\nTest READ:");
-        Produit p = dao.obtenirParId("TEST1");
+        Produit p = dao.obtenirParId(p1.getId());
         System.out.println("Produit trouvé: " + (p != null ? p : "Non trouvé"));
 
         System.out.println("\nTous les produits:");
@@ -84,7 +89,7 @@ public class TestDatabase {
 
         // DELETE
         System.out.println("\nTest DELETE:");
-        dao.supprimer("TEST2");
+        dao.supprimer(p2.getId());
         System.out.println("Produits restants:");
         dao.obtenirTous().forEach(System.out::println);
     }
@@ -94,14 +99,15 @@ public class TestDatabase {
 
         // CREATE
         System.out.println("\nTest CREATE:");
-        Admin admin = new Admin("ADMIN_TEST", "Admin Test");
-        Pharmacien pharma = new Pharmacien("PHARMA_TEST", "Pharmacien Test");
+        String suffix = String.valueOf(System.currentTimeMillis());
+        Admin admin = new Admin("ADMIN_TEST_" + suffix, "Admin Test");
+        Pharmacien pharma = new Pharmacien("PHARMA_TEST_" + suffix, "Pharmacien Test");
         dao.ajouter(admin);
         dao.ajouter(pharma);
 
         // READ
         System.out.println("\nTest READ:");
-        Utilisateur u = dao.obtenirParId("ADMIN_TEST");
+        Utilisateur u = dao.obtenirParId(admin.getId());
         System.out.println("Utilisateur trouvé: " + (u != null ? u : "Non trouvé"));
 
         System.out.println("\nTous les utilisateurs:");
@@ -113,7 +119,7 @@ public class TestDatabase {
 
         // DELETE
         System.out.println("\nTest DELETE:");
-        dao.supprimer("PHARMA_TEST");
+        dao.supprimer(pharma.getId());
         System.out.println("Utilisateurs restants:");
         dao.obtenirTous().forEach(System.out::println);
     }
@@ -123,29 +129,31 @@ public class TestDatabase {
 
         // CREATE
         System.out.println("\nTest CREATE:");
-        Vente v1 = new Vente("VENTE_TEST1", "TEST1", 5, 12.5);
-        Vente v2 = new Vente("VENTE_TEST2", "TEST1", 3, 7.5);
+        String suffix = String.valueOf(System.currentTimeMillis());
+        String produitId = "VENTE_PROD_" + suffix;
+        ProduitDAO produitDAO = new ProduitDAO();
+        produitDAO.ajouter(new Produit(produitId, "Produit Vente", "Test", 40, 9.9));
+
+        Vente v1 = new Vente("VENTE_TEST1_" + suffix, produitId, 5, 12.5);
+        Vente v2 = new Vente("VENTE_TEST2_" + suffix, produitId, 3, 7.5);
         dao.enregistrer(v1);
         dao.enregistrer(v2);
 
         // READ
         System.out.println("\nTest READ:");
-        Vente v = dao.obtenirParId("VENTE_TEST1");
+        Vente v = dao.obtenirParId(v1.getId());
         System.out.println("Vente trouvée: " + (v != null ? v : "Non trouvée"));
 
         System.out.println("\nToutes les ventes:");
         dao.obtenirTous().forEach(System.out::println);
 
         // Ventes par produit
-        System.out.println("\nTest RECHERCHE ventes pour produit TEST1:");
-        dao.obtenirParProduit("TEST1").forEach(System.out::println);
-
-        // Total des ventes
-        System.out.println("\nTotal des ventes: " + dao.calculerTotalVentes() + " MAD");
+        System.out.println("\nTest RECHERCHE ventes pour produit " + v1.getProduitId() + ":");
+        dao.obtenirParProduit(v1.getProduitId()).forEach(System.out::println);
 
         // DELETE
         System.out.println("\nTest DELETE:");
-        dao.supprimer("VENTE_TEST2");
+        dao.supprimer(v2.getId());
         System.out.println("Ventes restantes:");
         dao.obtenirTous().forEach(System.out::println);
     }

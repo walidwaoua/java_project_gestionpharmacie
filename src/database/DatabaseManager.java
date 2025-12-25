@@ -96,4 +96,16 @@ public class DatabaseManager {
             return false;
         }
     }
+
+    // Purge all tables (used by tests to avoid PK collisions)
+    public static void purgerDonneesTest() {
+        try (Statement stmt = getConnection().createStatement()) {
+            stmt.executeUpdate("DELETE FROM ventes");
+            stmt.executeUpdate("DELETE FROM utilisateurs");
+            stmt.executeUpdate("DELETE FROM produits");
+            System.out.println("Données de test purgées");
+        } catch (SQLException e) {
+            System.err.println("Erreur purge données: " + e.getMessage());
+        }
+    }
 }

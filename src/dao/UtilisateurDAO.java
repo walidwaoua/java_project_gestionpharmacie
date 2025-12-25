@@ -12,7 +12,7 @@ public class UtilisateurDAO {
 
     // CREATE - Ajouter un utilisateur
     public synchronized boolean ajouter(Utilisateur u) {
-        String sql = "INSERT INTO utilisateurs (id, nom, role) VALUES (?, ?, ?)";
+        String sql = "INSERT OR REPLACE INTO utilisateurs (id, nom, role) VALUES (?, ?, ?)";
 
         try (Connection conn = DatabaseManager.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -185,4 +185,3 @@ public class UtilisateurDAO {
         return utilisateurs;
     }
 }
-

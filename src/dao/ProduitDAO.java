@@ -8,9 +8,9 @@ import java.util.List;
 
 public class ProduitDAO {
 
-    // CREATE - Ajouter un produit
+    // CREATE - Ajouter un produit (remplace si déjà présent pour éviter les collisions PK)
     public synchronized boolean ajouter(Produit p) {
-        String sql = "INSERT INTO produits (id, nom, categorie, quantite, prix) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT OR REPLACE INTO produits (id, nom, categorie, quantite, prix) VALUES (?, ?, ?, ?, ?)";
 
         try (Connection conn = DatabaseManager.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -26,7 +26,7 @@ public class ProduitDAO {
             return rowsAffected > 0;
 
         } catch (SQLException e) {
-            System.err.println("Erreur ajout produit: " + e.getMessage());
+            System.err.println("Erreur ajout produit avec ID " + p.getId() + ": " + e.getMessage());
             return false;
         }
     }
@@ -51,7 +51,7 @@ public class ProduitDAO {
                 );
             }
         } catch (SQLException e) {
-            System.err.println("Erreur lecture produit: " + e.getMessage());
+            System.err.println("Erreur lecture produit avec ID " + id + ": " + e.getMessage());
         }
         return null;
     }
@@ -98,7 +98,7 @@ public class ProduitDAO {
             return rowsAffected > 0;
 
         } catch (SQLException e) {
-            System.err.println("Erreur mise a jour produit: " + e.getMessage());
+            System.err.println("Erreur mise a jour produit avec ID " + p.getId() + ": " + e.getMessage());
             return false;
         }
     }
@@ -116,7 +116,7 @@ public class ProduitDAO {
             return rowsAffected > 0;
 
         } catch (SQLException e) {
-            System.err.println("Erreur suppression produit: " + e.getMessage());
+            System.err.println("Erreur suppression produit avec ID " + id + ": " + e.getMessage());
             return false;
         }
     }

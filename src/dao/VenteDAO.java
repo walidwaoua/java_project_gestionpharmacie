@@ -11,7 +11,7 @@ public class VenteDAO {
 
     // CREATE - Enregistrer une vente
     public synchronized boolean enregistrer(Vente v) {
-        String sql = "INSERT INTO ventes (id, produit_id, quantite, total, date) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT OR REPLACE INTO ventes (id, produit_id, quantite, total, date) VALUES (?, ?, ?, ?, ?)";
 
         try (Connection conn = DatabaseManager.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {

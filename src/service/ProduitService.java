@@ -63,4 +63,6 @@ public class ProduitService {
     public void supprimer(String id) {
         produits.removeIf(p -> p.getId().equals(id));
     }
+
+    public List<Produit> getProduits() { return produits; }
 }
